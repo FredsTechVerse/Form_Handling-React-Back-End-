@@ -1,9 +1,15 @@
-import mongoose from "mongoose";
+const mongoose = require("mongoose");
 const { Schema } = mongoose;
 
-const emailSchema = new Schema({
-  name: String,
-  email: String,
+const EmailSchema = new Schema({
+  name: {
+    type: String,
+    required: true,
+  },
+  email: {
+    type: String,
+    required: true,
+  },
 }); //This is how the database fields are going to be filled up.
 
-export default mongoose.model("email", emailSchema);
+module.exports = mongoose.model("Email", EmailSchema);
