@@ -40,7 +40,11 @@ app.use(express.urlencoded({ extended: true }));
 //======================
 
 app.get("/", (req, res) => {
-  res.send("Hello World!").status(200);
+  res
+    .send(
+      "You have connected to express successfully.How can i be of assistance to you?"
+    )
+    .status(200);
 });
 
 app.get("/page1", (req, res) => {
