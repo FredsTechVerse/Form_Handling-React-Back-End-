@@ -36,7 +36,7 @@ app.use(express.json()); //Express own inbuilt middleware for recognizing and in
 app.use(cors());
 app.use(express.urlencoded({ extended: true }));
 
-//ALL THE GET REQUESTS.
+//HANDLING THE GET REQUESTS.
 //======================
 
 app.get("/", (req, res) => {
