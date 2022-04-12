@@ -35,20 +35,6 @@ db.once("open", function () {
 app.use(express.json()); //Express own inbuilt middleware for recognizing and interacting with request to the server
 app.use(cors());
 app.use(express.urlencoded({ extended: true }));
-//CREATING A SCHEMA
-//===================
-
-// var Schema = mongoose.Schema;
-
-// var EmailSchema = new Schema({
-//   name: String,
-//   email: String,
-// });
-
-//CREATING A MODEL OUT OF THE SCHEMA CREATED
-//===========================================
-
-// const EmailModel = mongoose.model("EmailModel", EmailSchema);
 
 //ALL THE GET REQUESTS.
 //======================
@@ -58,28 +44,11 @@ app.get("/", (req, res) => {
 });
 
 app.get("/page1", (req, res) => {
-  res.send("Hello from Page 1");
+  res.send("Hello from homepage. Getting you loud and clear.");
 });
 //ALL THE POST REQUESTS.
 //=======================
 
-// POST REQUEST 1
-//================
-// app.post("/email", async (req, res, next) => {
-//   const email_data = new EmailModel({
-//     name: req.body.name,
-//     email: req.body.email,
-//   });
-
-//   email_data.save(function (err, post) {
-//     if (err) {
-//       return next(err);
-//     }
-//     res.status(200).json(post);
-//   });
-//   // console.log(data);
-//   // res.status(200).send(req.body);
-// });
 // POST REQUEST 2
 //================
 app.post("/email", async (req, res) => {
