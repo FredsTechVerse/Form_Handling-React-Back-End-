@@ -42,19 +42,16 @@ app.use(express.urlencoded({ extended: true }));
 app.get("/", (req, res) => {
   res
     .send(
-      "You have connected to express successfully.How can i be of assistance to you?"
+      "You have connected to the express server successfully.Let get to work."
     )
     .status(200);
 });
 
-app.get("/page1", (req, res) => {
-  res.send("Hello from homepage. Getting you loud and clear.");
-});
 //ALL THE POST REQUESTS.
 //=======================
 
-// POST REQUEST 2
-//================
+// POST REQUEST
+//===============
 app.post("/email", async (req, res) => {
   let data = req.body;
   console.log(data);
