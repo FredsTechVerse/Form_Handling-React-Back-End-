@@ -1,19 +1,19 @@
 // APP CONFIGURURAION
 // =======================
+//HERE WE JUST IMPORT THE MODULES THAT WE NEED IN OUR APPLICATION,EITHER EXTERNAL OR INTERNAL,INACTIVE AT THIS STAGE.
 const express = require("express");
 const mongoose = require("mongoose");
+const bodyParser = require("body-parser");
 const cors = require("cors");
 const Email = require("./Emails");
-const bodyParser = require("body-parser");
-// const mongoose = require("mongoose");
 const app = express();
-const port = process.env.PORT || 3005;
-// var cors = require("cors");
-// const Email = require("./Emails");
 
-// const Email = require("./Emails");
+const port =
+  process.env.PORT ||
+  3005; /*Just incase we decide to deploy online you know.It will be listening from that new port.*/
 
 const connection_url = `mongodb+srv://FredzTech:Beijingbike5@cluster0.wnobx.mongodb.net/emails?retryWrites=true&w=majority`;
+
 //CONNECTING EXPRESS WEB SERVICE TO THE MONGODB DATABASE
 //======================================================
 mongoose.connect(connection_url, {
@@ -30,7 +30,7 @@ db.once("open", function () {
 });
 //NOT A MUST WE USE BODYPARSER COZ EXPRESS ALREADY HAS ITS OWN METHOD OF INTEPRETING REQUESTS.
 //==============================================================================================
-// MIDDLEWARE SETUP
+// MIDDLEWARE SETUP(GAMETIME FOR THE MODULES WHERE NOW WE USE THE KEYWORD APP.USE SOME MODEL HAHA)
 // ====================
 app.use(express.json()); //Express own inbuilt middleware for recognizing and interacting with request to the server
 app.use(cors());
