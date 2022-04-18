@@ -11,6 +11,7 @@ const EmailSchema = new Schema({
     type: String,
     required: true,
     unique: true,
+    lowercase: true,
   },
   newsLetter: {
     type: Boolean,

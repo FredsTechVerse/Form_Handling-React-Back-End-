@@ -40,11 +40,28 @@ app.use(express.urlencoded({ extended: true }));
 //======================
 
 app.get("/", (req, res) => {
-  res
-    .send(
-      "You have connected to the express server successfully.Let get to work."
-    )
-    .status(200);
+  try {
+    res
+      .send(
+        "You have connected to the express server successfully.Let get to work offline."
+      )
+      .status(200);
+  } catch (error) {
+    console.log(error);
+    res.send("Your backend is offline.");
+  }
+});
+
+app.get("/email", async (req, res) => {
+  let allEmails = await Email.find({});
+
+  try {
+    res.send(allEmails).status(300);
+  } catch (error) {
+    console.log(
+      "The email address is already registered.Kindly input another valid one."
+    );
+  }
 });
 
 //ALL THE POST REQUESTS.
@@ -54,13 +71,29 @@ app.get("/", (req, res) => {
 //===============
 app.post("/email", async (req, res) => {
   let data = req.body;
-  console.log(data);
   try {
     const email = await Email.create(data);
     await email.save();
     res.send(email);
   } catch (error) {
-    res.status(500).send(err);
+    let err = error;
+    res.send(err + " " + " Amd bytheway the email is already registered.");
+
+    res.status(500);
+  }
+});
+
+// DELETE REQUEST
+//================
+app.delete("/emailz", async (req, res) => {
+  try {
+    const email = await Email.deleteOne({
+      email: "ErickKimathi@gmail.com",
+    });
+    res.send("The data is sucessfully deleted").status(200);
+    if (!email) res.status(404).send("No item found");
+  } catch (error) {
+    res.status(500).send(error);
   }
 });
 
