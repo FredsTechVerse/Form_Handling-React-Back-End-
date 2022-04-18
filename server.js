@@ -88,7 +88,7 @@ app.post("/email", async (req, res) => {
 app.delete("/emailz", async (req, res) => {
   try {
     const email = await Email.deleteOne({
-      email: "ErickKimathi@gmail.com",
+      email: "ErickKImathi@gmail.com",
     });
     res.send("The data is sucessfully deleted").status(200);
     if (!email) res.status(404).send("No item found");
