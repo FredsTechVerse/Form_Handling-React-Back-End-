@@ -85,6 +85,11 @@ app.post("/email", async (req, res) => {
 
 // DELETE REQUEST
 //================
+
+app.delete("/email", async (req, res) => {
+  let data = await req;
+  res.send(data + " " + "Mic test kidogokidogo tu.");
+});
 app.delete("/emailz", async (req, res) => {
   try {
     const email = await Email.deleteOne({
