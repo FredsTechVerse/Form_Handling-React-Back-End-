@@ -6,6 +6,7 @@ const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
 const cors = require("cors");
 const Email = require("./Emails");
+const Contact = require("./Contacts");
 const app = express();
 
 const port =
@@ -58,17 +59,26 @@ app.get("/email", async (req, res) => {
   try {
     res.send(allEmails).status(300);
   } catch (error) {
-    console.log(
-      "The email address is already registered.Kindly input another valid one."
-    );
+    res.send(error).status(500);
+  }
+});
+
+app.get("/contacts", async (req, res) => {
+  let allContacts = await Contact.find({});
+
+  try {
+    res.send(allContacts).status(300);
+  } catch (error) {
+    res.send(error).status(500);
   }
 });
 
 //ALL THE POST REQUESTS.
 //=======================
 
-// POST REQUEST
+// POST REQUESTS
 //===============
+
 app.post("/email", async (req, res) => {
   let data = req.body;
   try {
@@ -78,6 +88,20 @@ app.post("/email", async (req, res) => {
   } catch (error) {
     let err = error;
     res.send(err + " " + " Amd bytheway the email is already registered.");
+
+    res.status(500);
+  }
+});
+
+app.post("/contacts", async (req, res) => {
+  let data = req.body;
+  try {
+    const contact = await Contact.create(data);
+    await contact.save();
+    res.send(contact);
+  } catch (error) {
+    let err = error;
+    res.send(err + " " + " And bytheway the contact is already registered.");
 
     res.status(500);
   }
